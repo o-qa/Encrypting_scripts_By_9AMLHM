@@ -256,7 +256,7 @@
 </head>
 <body>
 
-    <div id="toast">تم التشغيل!</div>
+    <div id="toast">تم التشغيل بنجاح</div>
 
     <div class="container">
         <!-- Top Bar -->
@@ -268,24 +268,24 @@
                     <div class="brand-sub">by 9AMLHM HUB</div>
                 </div>
             </div>
-            <button class="owner-btn" onclick="showToast('لوحة التحكم خاصة بـ 9AMLHM فقط!')">Owner Panel</button>
+            <button class="owner-btn" onclick="showToast('لوحة التحكم خاصة بـ 9AMLHM فقط')">Owner Panel</button>
         </div>
 
         <div class="main-title">9AMLHM Script Protector</div>
-        <div class="sub-desc">أقوى منصة لتشفير وحماية سكربتات اللوا لروبلوكس</div>
+        <div class="sub-desc">منصة تشفير وحماية سكربتات اللوا لروبلوكس</div>
 
         <!-- Encryption Type Select -->
         <div class="input-group">
             <div class="label-row">
-                <span>اختر نوع التشفير 🔒</span>
+                <span>اختر نوع التشفير</span>
             </div>
             <select id="encryptType">
-                <option value="mythic">👑 تشفير أسطوري محد يقدر يفكه، بسهوله (الأقوى)</option>
-                <option value="very_strong_4">🔥 طويل ولكن قوي جداً جداً جداً جداً</option>
-                <option value="very_strong_2">⚡ قوي جداً جداً</option>
-                <option value="very_strong">💪 قوي جداً</option>
-                <option value="long_weak">📜 طويل ولكن ضعيف</option>
-                <option value="weak">🍃 تشفير ضعيف</option>
+                <option value="mythic">تشفير اسطوري محد يقدر يفكه بسهولة (الأقوى)</option>
+                <option value="very_strong_4">طويل ولكن قوي جداً جداً جداً جداً</option>
+                <option value="very_strong_2">قوي جداً جداً</option>
+                <option value="very_strong">قوي جداً</option>
+                <option value="long_weak">طويل ولكن ضعيف</option>
+                <option value="weak">تشفير ضعيف</option>
             </select>
         </div>
 
@@ -300,7 +300,7 @@
 
         <!-- Encrypt Button -->
         <button class="btn-encrypt" onclick="encryptScript()">
-            تشفير السكربت الآن 🔐
+            تشفير السكربت الآن
         </button>
 
         <!-- Output Area -->
@@ -311,8 +311,8 @@
             <textarea id="scriptOutput" readonly placeholder="-- سيظهر السكربت المشفر هنا..."></textarea>
             
             <div class="output-actions">
-                <button class="btn-action" onclick="copyCode()">📋 نسخ الكود</button>
-                <button class="btn-action" onclick="downloadCode()">💾 تحميل كملف</button>
+                <button class="btn-action" onclick="copyCode()">نسخ الكود</button>
+                <button class="btn-action" onclick="downloadCode()">تحميل كملف</button>
             </div>
         </div>
     </div>
@@ -341,7 +341,7 @@
         function encryptScript() {
             let code = document.getElementById('scriptInput').value;
             if (!code.trim()) {
-                showToast('❌ الرجاء إدخال السكربت أولاً!');
+                showToast('الرجاء إدخال السكربت أولاً');
                 return;
             }
 
@@ -352,9 +352,11 @@
             let k2 = Math.floor(Math.random() * 200) + 20;
             let rawBytes = toBytes(code);
 
+            let banner = `-- ~نعم نعم يا صديقي هذا السكربت محمي من قبل تشفير صاملهم لا يمكن ففك، بسهوله؟ 🤗~\n`;
+
             if (type === "weak") {
                 let bytesStr = rawBytes.join(",");
-                result = `--[[\n    9AMLHM PROTECTOR - (تشفير ضعيف)\n]]--\n` +
+                result = banner +
                     `local b = {${bytesStr}};\n` +
                     `local s = ""; for i=1, #b do s = s .. string.char(b[i]) end;\n` +
                     `local fn = loadstring || load;\n` +
@@ -364,7 +366,7 @@
                 let junk = "";
                 for(let i=0; i<30; i++) { junk += `local _junk_${i} = ${Math.floor(Math.random()*99999)};\n`; }
                 let bytesStr = rawBytes.join(",");
-                result = `--[[\n    9AMLHM PROTECTOR - (طويل ولكن ضعيف)\n]]--\n` +
+                result = banner +
                     junk +
                     `local b = {${bytesStr}};\n` +
                     `local function _dec(arr)\n` +
@@ -376,7 +378,7 @@
 
             } else if (type === "very_strong") {
                 let encArr = rawBytes.map(b => b ^ k1);
-                result = `--[[\n    9AMLHM PROTECTOR - (قوي جداً)\n]]--\n` +
+                result = banner +
                     `local K1 = ${k1};\n` +
                     `local E = {${encArr.join(",")}};\n` +
                     `local function Dec()\n` +
@@ -386,7 +388,7 @@
 
             } else if (type === "very_strong_2") {
                 let encArr = rawBytes.map(b => (b ^ k1) ^ k2);
-                result = `--[[\n    9AMLHM PROTECTOR - (قوي جداً جداً)\n]]--\n` +
+                result = banner +
                     `local K1, K2 = ${k1}, ${k2};\n` +
                     `local E = {${encArr.join(",")}};\n` +
                     `local function Run()\n` +
@@ -401,7 +403,7 @@
                     junkLines += `local _junk_var_${i} = function() return ${Math.floor(Math.random()*99999)} end;\n`;
                 }
                 let encArr = rawBytes.map(b => (b ^ k1) ^ k2);
-                result = `--[[\n    9AMLHM PROTECTOR - (طويل ولكن قوي جداً جداً جداً جداً)\n]]--\n` +
+                result = banner +
                     junkLines +
                     `local K1, K2 = ${k1}, ${k2};\n` +
                     `local E = {${encArr.join(",")}};\n` +
@@ -412,15 +414,8 @@
                     `end; Run()();`;
 
             } else {
-                // تشفير أسطوري (7 Layers XOR + Byte Arrays + Anti Tamper)
                 let encArr = rawBytes.map(b => (((b ^ k1) ^ k2) ^ 7) ^ 13);
-                result = `--[[\n` +
-                    `    ╔══════════════════════════════════════════════════════╗\n` +
-                    `    ║            9AMLHM MYTHIC OBFUSCATOR v5.0             ║\n` +
-                    `    ║      👑 أقوى تشفير أسطوري شغال ومحمي بالكامل 👑      ║\n` +
-                    `    ║  Supported: Delta, Solara, Fluxus, Wave, Arceus X    ║\n` +
-                    `    ╚══════════════════════════════════════════════════════╝\n` +
-                    `]]--\n` +
+                result = banner +
                     `local _K1, _K2, _M1, _M2 = ${k1}, ${k2}, 7, 13;\n` +
                     `local _P = {${encArr.join(",")}};\n` +
                     `local function _9AMLHM_Exec()\n` +
@@ -439,26 +434,26 @@
             }
 
             document.getElementById('scriptOutput').value = result;
-            showToast('👑 تم التشفير بنجاح! السكربت جاهز للعمل في روبلوكس');
+            showToast('تم التشفير بنجاح والسكربت جاهز للعمل');
         }
 
         function copyCode() {
             let output = document.getElementById('scriptOutput');
-            if(!output.value) { showToast('❌ لا يوجد كود للنسخ!'); return; }
+            if(!output.value) { showToast('لا يوجد كود للنسخ'); return; }
             output.select();
             document.execCommand('copy');
-            showToast('📋 تم نسخ الكود الحافظة!');
+            showToast('تم نسخ الكود إلى الحافظة');
         }
 
         function downloadCode() {
             let code = document.getElementById('scriptOutput').value;
-            if (!code) { showToast('❌ لا يوجد كود للتحميل!'); return; }
+            if (!code) { showToast('لا يوجد كود للتحميل'); return; }
             let blob = new Blob([code], { type: 'text/plain' });
             let link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = '9AMLHM_Protected.lua';
             link.click();
-            showToast('💾 بدأ تحميل الملف!');
+            showToast('بدء تحميل الملف');
         }
     </script>
 </body>
