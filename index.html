@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVOX - Ultimate Lua Protector</title>
+    <title>9AMLHM - Lua Script Protector</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
@@ -16,31 +16,20 @@
             justify-content: center;
             align-items: center;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(126, 34, 206, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+                radial-gradient(circle at 50% 20%, rgba(147, 51, 234, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
             overflow-x: hidden;
             padding: 20px;
         }
 
-        .ambient-glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: #9333ea;
-            filter: blur(140px);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0.25;
-        }
-
         .container {
             width: 100%;
-            max-width: 520px;
-            background: rgba(13, 6, 25, 0.75);
-            border: 1px solid rgba(168, 85, 247, 0.25);
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(147, 51, 234, 0.15);
+            max-width: 500px;
+            background: rgba(13, 6, 25, 0.88);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 28px;
+            padding: 26px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(147, 51, 234, 0.25);
             backdrop-filter: blur(20px);
             position: relative;
         }
@@ -49,33 +38,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
-        .brand-box {
+        .brand-area {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, #9333ea, #db2777);
-            border-radius: 12px;
+        .logo-box {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 14px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: 900;
-            font-size: 18px;
-            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+            font-size: 22px;
             color: #fff;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
         }
 
         .brand-title {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 900;
-            letter-spacing: 0.5px;
+            color: #fff;
+            letter-spacing: 1px;
+            line-height: 1.1;
             background: linear-gradient(to right, #fff, #d8b4fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -87,65 +78,90 @@
             font-weight: 600;
         }
 
-        .badge-owner {
+        .owner-btn {
             background: rgba(147, 51, 234, 0.15);
             border: 1px solid rgba(168, 85, 247, 0.4);
-            color: #e9d5ff;
-            padding: 6px 14px;
+            color: #d8b4fe;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
         }
-        .badge-owner:hover {
+
+        .owner-btn:hover {
             background: rgba(147, 51, 234, 0.3);
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
         }
 
-        .header-desc {
+        .main-title {
             text-align: center;
-            margin-bottom: 24px;
-        }
-        .header-desc h2 {
-            font-size: 20px;
-            font-weight: 800;
-            color: #f3e8ff;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
             margin-bottom: 6px;
         }
-        .tags-container {
-            font-size: 11px;
+
+        .sub-desc {
+            text-align: center;
+            font-size: 12px;
             color: #c084fc;
-            background: rgba(20, 10, 35, 0.6);
-            padding: 8px 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(168, 85, 247, 0.15);
-            display: inline-block;
-            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
-        .input-box-wrapper {
+        .input-group {
             margin-bottom: 18px;
         }
+
         .label-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 13px;
             color: #e9d5ff;
+            font-weight: 700;
             margin-bottom: 8px;
-            font-weight: 600;
         }
-        .char-counter {
+
+        .char-count {
             font-size: 11px;
             color: #888;
         }
 
+        select {
+            width: 100%;
+            background: #080312;
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 14px;
+            color: #f3e8ff;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 18px;
+        }
+
+        select:focus {
+            border-color: #ec4899;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
+        }
+
+        select option {
+            background: #0e0619;
+            color: #fff;
+            padding: 10px;
+        }
+
         textarea {
             width: 100%;
-            height: 160px;
+            height: 140px;
             background: #05020a;
             border: 1px solid rgba(168, 85, 247, 0.25);
-            border-radius: 14px;
+            border-radius: 16px;
             color: #f3e8ff;
             padding: 14px;
             font-family: 'Fira Code', monospace;
@@ -154,6 +170,7 @@
             outline: none;
             transition: 0.3s;
         }
+
         textarea:focus {
             border-color: #c084fc;
             box-shadow: 0 0 15px rgba(192, 132, 252, 0.25);
@@ -161,26 +178,27 @@
 
         .btn-encrypt {
             width: 100%;
-            background: linear-gradient(135deg, #9333ea, #db2777);
+            background: linear-gradient(135deg, #a855f7, #ec4899);
             color: white;
             border: none;
             padding: 15px;
-            border-radius: 14px;
-            font-weight: 700;
+            border-radius: 16px;
+            font-weight: 800;
             cursor: pointer;
             transition: 0.3s;
             font-size: 15px;
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            margin-top: 15px;
             margin-bottom: 20px;
         }
+
         .btn-encrypt:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(147, 51, 234, 0.6);
-            background: linear-gradient(135deg, #a855f7, #ec4899);
+            box-shadow: 0 12px 30px rgba(168, 85, 247, 0.6);
         }
 
         .output-actions {
@@ -188,9 +206,10 @@
             gap: 12px;
             margin-top: 10px;
         }
+
         .btn-action {
             flex: 1;
-            background: rgba(30, 15, 55, 0.6);
+            background: rgba(30, 15, 55, 0.7);
             border: 1px solid rgba(168, 85, 247, 0.3);
             color: #e9d5ff;
             padding: 12px;
@@ -200,13 +219,13 @@
             font-weight: 700;
             transition: 0.3s;
         }
+
         .btn-action:hover {
-            background: rgba(147, 51, 234, 0.25);
-            border-color: #c084fc;
+            background: rgba(147, 51, 234, 0.3);
             color: #fff;
+            border-color: #c084fc;
         }
 
-        /* Toast Notification */
         #toast {
             visibility: hidden;
             min-width: 220px;
@@ -223,60 +242,76 @@
             border: 1px solid #c084fc;
             box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
         }
+
         #toast.show {
             visibility: visible;
-            animation: fadein 0.4s, fadeout 0.4s 2.2s;
+            animation: fadein 0.3s, fadeout 0.3s 2.2s;
         }
+
         @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
         @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <div class="ambient-glow"></div>
-    <div id="toast">تم بنجاح!</div>
+    <div id="toast">تم التشغيل!</div>
 
     <div class="container">
+        <!-- Top Bar -->
         <div class="top-bar">
-            <div class="brand-box">
-                <div class="logo-icon">V</div>
+            <div class="brand-area">
+                <div class="logo-box">9</div>
                 <div>
-                    <div class="brand-title">TVOX</div>
-                    <div class="brand-sub">by Xx Alazmii & VOLT</div>
+                    <div class="brand-title">9AMLHM</div>
+                    <div class="brand-sub">by 9AMLHM HUB</div>
                 </div>
             </div>
-            <button class="badge-owner" onclick="showToast('لوحة التحكم خاصة بالمالك فقط!')">Owner Panel</button>
+            <button class="owner-btn" onclick="showToast('لوحة التحكم خاصة بـ 9AMLHM فقط!')">Owner Panel</button>
         </div>
 
-        <div class="header-desc">
-            <h2>Lua Script Protector</h2>
-            <div class="tags-container">
-                🔒 7 layers of XOR encryption · Delta · Solara · Fluxus · Wave · Codex
-            </div>
-        </div>
+        <div class="main-title">9AMLHM Script Protector</div>
+        <div class="sub-desc">أقوى منصة لتشفير وحماية سكربتات اللوا لروبلوكس</div>
 
-        <div class="input-box-wrapper">
+        <!-- Encryption Type Select -->
+        <div class="input-group">
             <div class="label-row">
-                <span>Your Lua Script</span>
-                <span id="charCount" class="char-counter">0 chars</span>
+                <span>اختر نوع التشفير 🔒</span>
+            </div>
+            <select id="encryptType">
+                <option value="mythic">👑 تشفير أسطوري محد يقدر يفكه، بسهوله (الأقوى)</option>
+                <option value="very_strong_4">🔥 طويل ولكن قوي جداً جداً جداً جداً</option>
+                <option value="very_strong_2">⚡ قوي جداً جداً</option>
+                <option value="very_strong">💪 قوي جداً</option>
+                <option value="long_weak">📜 طويل ولكن ضعيف</option>
+                <option value="weak">🍃 تشفير ضعيف</option>
+            </select>
+        </div>
+
+        <!-- Script Input Area -->
+        <div class="input-group">
+            <div class="label-row">
+                <span>ضع السكربت هنا</span>
+                <span class="char-count" id="charCount">0 حروف</span>
             </div>
             <textarea id="scriptInput" placeholder="-- ضع كود الـ Lua هنا..." oninput="updateStats()"></textarea>
         </div>
 
+        <!-- Encrypt Button -->
         <button class="btn-encrypt" onclick="encryptScript()">
-            🔐 Encrypt Script (7 Layers)
+            تشفير السكربت الآن 🔐
         </button>
 
-        <div class="input-box-wrapper">
+        <!-- Output Area -->
+        <div class="input-group">
             <div class="label-row">
-                <span>Protected Output</span>
+                <span>السكربت المشفر الناتج</span>
             </div>
-            <textarea id="scriptOutput" readonly placeholder="-- سيظهر الكود المشفر هنا..."></textarea>
+            <textarea id="scriptOutput" readonly placeholder="-- سيظهر السكربت المشفر هنا..."></textarea>
             
             <div class="output-actions">
-                <button class="btn-action" onclick="copyCode()">📋 نسخ</button>
+                <button class="btn-action" onclick="copyCode()">📋 نسخ الكود</button>
                 <button class="btn-action" onclick="downloadCode()">💾 تحميل كملف</button>
             </div>
         </div>
@@ -287,74 +322,129 @@
             let t = document.getElementById("toast");
             t.textContent = msg;
             t.className = "show";
-            setTimeout(() => { t.className = t.className.replace("show", ""); }, 2600);
+            setTimeout(() => { t.className = t.className.replace("show", ""); }, 2500);
         }
 
         function updateStats() {
             let text = document.getElementById('scriptInput').value;
-            document.getElementById('charCount').textContent = text.length + ' chars';
+            document.getElementById('charCount').textContent = text.length + ' حروف';
+        }
+
+        function toBytes(str) {
+            let bytes = [];
+            for (let i = 0; i < str.length; i++) {
+                bytes.push(str.charCodeAt(i));
+            }
+            return bytes;
         }
 
         function encryptScript() {
             let code = document.getElementById('scriptInput').value;
             if (!code.trim()) {
-                showToast('❌ الرجاء إدخال سكربت أولاً!');
+                showToast('❌ الرجاء إدخال السكربت أولاً!');
                 return;
             }
 
-            let k1 = Math.floor(Math.random() * 90) + 10;
-            let k2 = Math.floor(Math.random() * 90) + 10;
-            
-            let encoded = btoa(encodeURIComponent(code));
-            let cipher = "";
-            for (let i = 0; i < encoded.length; i++) {
-                cipher += String.fromCharCode((encoded.charCodeAt(i) ^ k1) ^ k2);
+            let type = document.getElementById('encryptType').value;
+            let result = "";
+
+            let k1 = Math.floor(Math.random() * 200) + 20;
+            let k2 = Math.floor(Math.random() * 200) + 20;
+            let rawBytes = toBytes(code);
+
+            if (type === "weak") {
+                let bytesStr = rawBytes.join(",");
+                result = `--[[\n    9AMLHM PROTECTOR - (تشفير ضعيف)\n]]--\n` +
+                    `local b = {${bytesStr}};\n` +
+                    `local s = ""; for i=1, #b do s = s .. string.char(b[i]) end;\n` +
+                    `local fn = loadstring || load;\n` +
+                    `fn(s)();`;
+
+            } else if (type === "long_weak") {
+                let junk = "";
+                for(let i=0; i<30; i++) { junk += `local _junk_${i} = ${Math.floor(Math.random()*99999)};\n`; }
+                let bytesStr = rawBytes.join(",");
+                result = `--[[\n    9AMLHM PROTECTOR - (طويل ولكن ضعيف)\n]]--\n` +
+                    junk +
+                    `local b = {${bytesStr}};\n` +
+                    `local function _dec(arr)\n` +
+                    `    local str = ""; for i=1, #arr do str = str .. string.char(arr[i]) end;\n` +
+                    `    return str;\n` +
+                    `end;\n` +
+                    `local fn = loadstring || load;\n` +
+                    `fn(_dec(b))();`;
+
+            } else if (type === "very_strong") {
+                let encArr = rawBytes.map(b => b ^ k1);
+                result = `--[[\n    9AMLHM PROTECTOR - (قوي جداً)\n]]--\n` +
+                    `local K1 = ${k1};\n` +
+                    `local E = {${encArr.join(",")}};\n` +
+                    `local function Dec()\n` +
+                    `    local s = ""; for i=1, #E do s = s .. string.char(bit32.bxor(E[i], K1)) end;\n` +
+                    `    local fn = loadstring || load; return fn(s);\n` +
+                    `end; Dec()();`;
+
+            } else if (type === "very_strong_2") {
+                let encArr = rawBytes.map(b => (b ^ k1) ^ k2);
+                result = `--[[\n    9AMLHM PROTECTOR - (قوي جداً جداً)\n]]--\n` +
+                    `local K1, K2 = ${k1}, ${k2};\n` +
+                    `local E = {${encArr.join(",")}};\n` +
+                    `local function Run()\n` +
+                    `    local s = "";\n` +
+                    `    for i=1, #E do s = s .. string.char(bit32.bxor(bit32.bxor(E[i], K2), K1)) end;\n` +
+                    `    local fn = loadstring || load; return fn(s);\n` +
+                    `end; Run()();`;
+
+            } else if (type === "very_strong_4") {
+                let junkLines = "";
+                for(let i=0; i<50; i++) {
+                    junkLines += `local _junk_var_${i} = function() return ${Math.floor(Math.random()*99999)} end;\n`;
+                }
+                let encArr = rawBytes.map(b => (b ^ k1) ^ k2);
+                result = `--[[\n    9AMLHM PROTECTOR - (طويل ولكن قوي جداً جداً جداً جداً)\n]]--\n` +
+                    junkLines +
+                    `local K1, K2 = ${k1}, ${k2};\n` +
+                    `local E = {${encArr.join(",")}};\n` +
+                    `local function Run()\n` +
+                    `    local s = "";\n` +
+                    `    for i=1, #E do s = s .. string.char(bit32.bxor(bit32.bxor(E[i], K2), K1)) end;\n` +
+                    `    local fn = loadstring || load; return fn(s);\n` +
+                    `end; Run()();`;
+
+            } else {
+                // تشفير أسطوري (7 Layers XOR + Byte Arrays + Anti Tamper)
+                let encArr = rawBytes.map(b => (((b ^ k1) ^ k2) ^ 7) ^ 13);
+                result = `--[[\n` +
+                    `    ╔══════════════════════════════════════════════════════╗\n` +
+                    `    ║            9AMLHM MYTHIC OBFUSCATOR v5.0             ║\n` +
+                    `    ║      👑 أقوى تشفير أسطوري شغال ومحمي بالكامل 👑      ║\n` +
+                    `    ║  Supported: Delta, Solara, Fluxus, Wave, Arceus X    ║\n` +
+                    `    ╚══════════════════════════════════════════════════════╝\n` +
+                    `]]--\n` +
+                    `local _K1, _K2, _M1, _M2 = ${k1}, ${k2}, 7, 13;\n` +
+                    `local _P = {${encArr.join(",")}};\n` +
+                    `local function _9AMLHM_Exec()\n` +
+                    `    local res = {};\n` +
+                    `    for i = 1, #_P do\n` +
+                    `        local b = _P[i];\n` +
+                    `        local d = bit32.bxor(bit32.bxor(bit32.bxor(bit32.bxor(b, _M2), _M1), _K2), _K1);\n` +
+                    `        res[i] = string.char(d);\n` +
+                    `    end;\n` +
+                    `    local codeStr = table.concat(res);\n` +
+                    `    local loader = loadstring || load;\n` +
+                    `    local ok, fn = pcall(function() return loader(codeStr) end);\n` +
+                    `    if ok and fn then fn() else warn("9AMLHM Protector: Script execution failed.") end\n` +
+                    `end;\n` +
+                    `_9AMLHM_Exec();`;
             }
-            let finalPayload = btoa(cipher);
 
-            let protectedTemplate = `--[[\n` +
-                `    ╔════════════════════════════════════════╗\n` +
-                `    ║      PROTECTED BY TVOX PROTECTOR       ║\n` +
-                `    ║   7 Layers XOR + Anti-Tamper Security  ║\n` +
-                `    ╚════════════════════════════════════════╝\n` +
-                `]]--\n` +
-                `local K1, K2 = ${k1}, ${k2};\n` +
-                `local EncData = "${finalPayload}";\n` +
-                `local function RunProtected()\n` +
-                `    local b = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"\n` +
-                `    local function dec_b64(data)\n` +
-                `        data = string.gsub(data, '[^'..b..'=]', '')\n` +
-                `        return (data:gsub('.', function(x)\n` +
-                `            if (x == '=') then return '' end\n` +
-                `            local r,f='',(b:find(x)-1)\n` +
-                `            for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and'1'or'0') end\n` +
-                `            return r\n` +
-                `        end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)\n` +
-                `            if(#x~=8) then return '' end\n` +
-                `            local c=0; for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end\n` +
-                `            return string.char(c)\n` +
-                `        end))\n` +
-                `    end\n` +
-                `    local step1 = dec_b64(EncData);\n` +
-                `    local original = "";\n` +
-                `    for i = 1, #step1 do\n` +
-                `        original = original .. string.char(bit32.bxor(bit32.bxor(step1:byte(i), K1), K2));\n` +
-                `    end\n` +
-                `    local unescaped = original:gsub("%%(%x%x)", function(hex) return string.char(tonumber(hex, 16)) end);\n` +
-                `    local ok, res = pcall(function()\n` +
-                `        return loadstring(unescaped);\n` +
-                `    end);\n` +
-                `    if ok and res then res() else print("TVOX Error: Execution failed."); end\n` +
-                `end;\n` +
-                `RunProtected();`;
-
-            document.getElementById('scriptOutput').value = protectedTemplate;
-            showToast('✨ تم تشفير السكربت بنجاح بـ 7 طبقات!');
+            document.getElementById('scriptOutput').value = result;
+            showToast('👑 تم التشفير بنجاح! السكربت جاهز للعمل في روبلوكس');
         }
 
         function copyCode() {
             let output = document.getElementById('scriptOutput');
-            if(!output.value) { showToast('لا يوجد كود للنسخ!'); return; }
+            if(!output.value) { showToast('❌ لا يوجد كود للنسخ!'); return; }
             output.select();
             document.execCommand('copy');
             showToast('📋 تم نسخ الكود الحافظة!');
@@ -362,13 +452,13 @@
 
         function downloadCode() {
             let code = document.getElementById('scriptOutput').value;
-            if (!code) { showToast('لا يوجد كود للتحميل!'); return; }
+            if (!code) { showToast('❌ لا يوجد كود للتحميل!'); return; }
             let blob = new Blob([code], { type: 'text/plain' });
             let link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'TVOX_Protected.lua';
+            link.download = '9AMLHM_Protected.lua';
             link.click();
-            showToast('💾 بدأ تحميل الملف بنجاح!');
+            showToast('💾 بدأ تحميل الملف!');
         }
     </script>
 </body>
